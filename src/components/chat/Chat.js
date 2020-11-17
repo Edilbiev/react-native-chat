@@ -16,18 +16,17 @@ export default function Chat({ route }) {
   }, [dispatch, myId, contactId]);
 
   const messages = useSelector((state) => state.chat.items);
-  
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "position" : "height"}
-      style={styles.avoid}
     >
       <View style={styles.chatOuter}>
         <ScrollView style={styles.chat}>
           {messages.map(message => <Message key={message._id} content={message.content} isInbox={message.toUserId === myId} />)}
         </ScrollView>
       </View>
-      <MessageInput />
+      <MessageInput route={route}/>
     </KeyboardAvoidingView>
   );
 }
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   chatOuter: {
-    height: "100%",
+    height: "88%",
   },
 });
 
